@@ -17,15 +17,21 @@ git clone <your-repo-url>
 cd ai-job-search
 ```
 
-Run the browser prototype:
+Run the backend-backed beta dashboard:
+
+```bash
+node server.js
+```
+
+Open `http://127.0.0.1:4173/dashboard/`. Server mode stores profile/application data in `.jobflow/data.json`, can fetch job-posting URLs through the backend, and generates basic CV/cover-letter PDF drafts for tracked roles.
+
+Static fallback, if you only want the browser-only prototype:
 
 ```bash
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:4173/dashboard/`. If that port is busy, use another one, for example `4174`.
-
-The browser dashboard is a local prototype for profile inputs, deterministic fit scoring, tracking, and exports. The agent slash-command workflow handles deeper fit evaluation, document drafting, and PDF compilation.
+In static mode, data stays in localStorage, URL fetch is disabled, and PDF drafting is unavailable. The agent slash-command workflow still handles deeper fit evaluation, richer document drafting, and LaTeX-grade PDF compilation.
 
 Optional job-board tools, if present in `.agents/skills/`:
 
@@ -62,6 +68,7 @@ The apply flow evaluates fit first. If the role is worth pursuing, it drafts the
 ```text
 CLAUDE.md                         profile + workflow rules
 dashboard/                         browser prototype for analyzing jobs + tracking applications
+server.js                          zero-dependency backend for persistence, URL fetch, and PDF drafts
 .claude/commands/                 /setup, /apply, /expand, /reset
 .claude/skills/                   application, search, and upskill playbooks
 .agents/skills/                   job-board CLI integrations
@@ -77,6 +84,7 @@ job_search_tracker.csv            application tracker
 ## Requirements
 
 - Python 3.10+
+- Node.js 18+ for backend-backed dashboard mode
 - Bun, only if using the included TypeScript job-board CLIs
 - LaTeX with `lualatex` and `xelatex` for PDF generation
 - An agent CLI that supports the slash-command workflow in `.claude/commands/`

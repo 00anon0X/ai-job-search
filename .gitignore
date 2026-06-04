@@ -67,3 +67,6 @@ upskill/*.md
 
 # Agent usage logs
 .agents/
+
+# JobFlow local backend data
+.jobflow/

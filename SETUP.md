@@ -16,6 +16,14 @@ Python 3.10+ is required for salary lookup utilities:
 python --version
 ```
 
+### Node.js
+
+Node.js 18+ is required for the backend-backed dashboard mode:
+
+```bash
+node --version
+```
+
 ### Bun
 
 Bun is only needed for the included TypeScript job-board CLIs:
@@ -78,15 +86,23 @@ python tools/convert_salary_excel.py path/to/salary-data.xlsx --source "Salary D
 
 If the file is missing, salary lookup is skipped.
 
-## 6. Test the browser prototype
+## 6. Test the dashboard
+
+Recommended server mode:
+
+```bash
+node server.js
+```
+
+Open `http://127.0.0.1:4173/dashboard/`. Server mode persists data in `.jobflow/data.json`, fetches job-posting URLs, exports server CSV, and serves generated CV/cover-letter PDF drafts.
+
+Static fallback:
 
 ```bash
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:4173/dashboard/`. If that port is busy, use another one, for example `4174`.
-
-The prototype stores profile and tracker data in your browser, supports deterministic demo fit scoring, and exports JSON/CSV.
+Static mode stores profile and tracker data in your browser only and disables URL fetching/PDF drafts.
 
 ## 7. Test the agent workflow
 
@@ -121,3 +137,7 @@ Run `bun install` inside each CLI folder under `.agents/skills/*/cli`.
 ### Salary lookup is skipped
 
 That is expected unless `salary_data.json` exists in the repo root.
+
+### URL fetch fails
+
+Some job boards block automated fetches or require login. Paste the posting text manually in that case.

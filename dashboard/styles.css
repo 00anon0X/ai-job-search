@@ -148,7 +148,9 @@ input, textarea, select {
 .status-select { min-height: 38px; padding: 8px 10px; border-radius: 999px; text-transform: capitalize; font-weight: 760; color: var(--muted); background: #f2eee6; }
 textarea { resize: vertical; min-height: 120px; }
 input:focus, textarea:focus, select:focus, button:focus-visible, a:focus-visible { outline: 3px solid rgba(28, 107, 84, .22); outline-offset: 2px; }
-.form-actions, .export-actions, .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.form-actions, .export-actions, .toolbar, .input-action, .job-actions, .document-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.input-action input { flex: 1 1 260px; }
+.input-action .button { flex: 0 0 auto; }
 .analysis-result {
   margin-top: 18px;
   border-radius: 18px;
@@ -182,6 +184,15 @@ input:focus, textarea:focus, select:focus, button:focus-visible, a:focus-visible
 .status { padding: 7px 10px; border-radius: 999px; background: #f2eee6; color: var(--muted); font-size: 12px; font-weight: 760; text-transform: capitalize; text-align: center; }
 .fit { font-weight: 850; color: var(--accent-strong); }
 .small-button { border: 0; background: transparent; color: var(--danger); font-weight: 760; padding: 8px; }
+.doc-link {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 800;
+}
+.document-actions { margin-top: 14px; }
 .empty-state { padding: 24px; color: var(--muted); text-align: center; border: 1px dashed var(--line); border-radius: 18px; }
 .toast {
   position: fixed; right: 18px; bottom: 18px; z-index: 10;

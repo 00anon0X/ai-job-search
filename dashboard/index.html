@@ -22,8 +22,8 @@
           <a href="#exports">Exports</a>
         </nav>
         <div class="privacy-card">
-          <span class="eyebrow">Local prototype</span>
-          <p>Your profile and applications are saved in this browser only.</p>
+          <span class="eyebrow" id="mode-pill">Browser-only mode</span>
+          <p id="mode-copy">Data stays in this browser. Run the Node server for persistence and URL fetch.</p>
         </div>
       </aside>
 
@@ -58,7 +58,7 @@
               <span class="eyebrow">Job analysis</span>
               <h2 id="analyze-title">Paste a role. Get a clear verdict.</h2>
             </div>
-            <span class="pill">Deterministic demo scoring</span>
+            <span class="pill">Backend-ready deterministic scoring</span>
           </div>
           <form id="job-form" class="job-form">
             <label for="job-title">Role title</label>
@@ -67,8 +67,11 @@
             <label for="job-company">Company</label>
             <input id="job-company" name="company" autocomplete="off" placeholder="Acme Health" required />
 
-            <label for="job-url">Job URL <span class="muted-label">optional, saved for reference</span></label>
-            <input id="job-url" name="url" type="url" autocomplete="url" placeholder="https://company.com/careers/role" />
+            <label for="job-url">Job URL <span class="muted-label">optional; server mode can fetch it</span></label>
+            <div class="input-action">
+              <input id="job-url" name="url" type="url" autocomplete="url" placeholder="https://company.com/careers/role" />
+              <button class="button ghost" type="button" id="fetch-url">Fetch posting</button>
+            </div>
 
             <label for="job-description">Job description</label>
             <textarea id="job-description" name="description" rows="7" placeholder="Paste requirements, responsibilities, location, and salary details..." required></textarea>
@@ -143,6 +146,7 @@
           <div class="export-actions">
             <button class="button ghost" id="export-json" type="button">Export JSON</button>
             <button class="button ghost" id="export-csv" type="button">Export CSV</button>
+            <a class="button ghost" href="/api/export.csv">Server CSV</a>
             <button class="button danger" id="reset-data" type="button">Reset local data</button>
           </div>
         </section>
