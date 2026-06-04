@@ -41,7 +41,7 @@ git clone <your-repo-url>
 cd ai-job-search
 ```
 
-## 3. Install job-board tools
+## 3. Install job-board tools, if present
 
 ```bash
 for tool in jobbank-search jobdanmark-search jobindex-search jobnet-search; do
@@ -49,7 +49,7 @@ for tool in jobbank-search jobdanmark-search jobindex-search jobnet-search; do
 done
 ```
 
-Skip this step if you only want profile setup and application drafting.
+Skip this step if `.agents/skills/` is not present or if you only want the browser prototype, profile setup, and application drafting.
 
 ## 4. Build your profile
 
@@ -78,11 +78,22 @@ python tools/convert_salary_excel.py path/to/salary-data.xlsx --source "Salary D
 
 If the file is missing, salary lookup is skipped.
 
-## 6. Test the workflow
+## 6. Test the browser prototype
+
+```bash
+python3 -m http.server 4173 --bind 127.0.0.1
+```
+
+Open `http://127.0.0.1:4173/dashboard/`. If that port is busy, use another one, for example `4174`.
+
+The prototype stores profile and tracker data in your browser, supports deterministic demo fit scoring, and exports JSON/CSV.
+
+## 7. Test the agent workflow
 
 ```text
-/scrape
+/setup
 /apply <job-url-or-description>
+/expand
 ```
 
 The application flow:

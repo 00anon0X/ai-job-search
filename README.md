@@ -5,7 +5,7 @@ A clean AI workspace for finding roles, scoring fit, and producing tailored appl
 ## What it does
 
 - Builds a reusable candidate profile from your CV, LinkedIn export, diplomas, references, and past applications.
-- Searches configured job boards and ranks matches by fit.
+- Can use configured job-board integrations where available.
 - Evaluates a posting before you spend time applying.
 - Drafts tailored CVs, cover letters, and interview prep.
 - Compiles and checks final PDFs so layout issues are caught before sending.
@@ -17,7 +17,17 @@ git clone <your-repo-url>
 cd ai-job-search
 ```
 
-Install the optional job-board tools:
+Run the browser prototype:
+
+```bash
+python3 -m http.server 4173 --bind 127.0.0.1
+```
+
+Open `http://127.0.0.1:4173/dashboard/`. If that port is busy, use another one, for example `4174`.
+
+The browser dashboard is a local prototype for profile inputs, deterministic fit scoring, tracking, and exports. The agent slash-command workflow handles deeper fit evaluation, document drafting, and PDF compilation.
+
+Optional job-board tools, if present in `.agents/skills/`:
 
 ```bash
 for tool in jobbank-search jobdanmark-search jobindex-search jobnet-search; do
@@ -40,9 +50,9 @@ Choose one onboarding path:
 ## Daily workflow
 
 ```text
-/scrape                         # find and rank roles
+/setup                          # build or update your profile
 /apply <job-url-or-description>  # evaluate fit, then draft documents
-/upskill <job-url-or-description> # identify gaps and learning priorities
+/expand                         # enrich profile details from linked sources
 ```
 
 The apply flow evaluates fit first. If the role is worth pursuing, it drafts the CV and cover letter, reviews them, compiles PDFs, checks page layout, and returns the final files with a pass/fail checklist.
@@ -51,7 +61,8 @@ The apply flow evaluates fit first. If the role is worth pursuing, it drafts the
 
 ```text
 CLAUDE.md                         profile + workflow rules
-.claude/commands/                 /setup, /scrape, /apply, /expand, /upskill, /reset
+dashboard/                         browser prototype for analyzing jobs + tracking applications
+.claude/commands/                 /setup, /apply, /expand, /reset
 .claude/skills/                   application, search, and upskill playbooks
 .agents/skills/                   job-board CLI integrations
 cv/                               CV templates and generated CVs

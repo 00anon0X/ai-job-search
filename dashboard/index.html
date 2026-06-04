@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>JobFlow Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="JobFlow home">
+          <span class="brand-mark">J</span>
+          <span>JobFlow</span>
+        </a>
+        <nav class="nav-list">
+          <a href="#dashboard" class="active">Dashboard</a>
+          <a href="#analyze">Analyze</a>
+          <a href="#tracker">Applications</a>
+          <a href="#profile">Profile</a>
+          <a href="#exports">Exports</a>
+        </nav>
+        <div class="privacy-card">
+          <span class="eyebrow">Local prototype</span>
+          <p>Your profile and applications are saved in this browser only.</p>
+        </div>
+      </aside>
+
+      <main id="top" class="main">
+        <section class="hero" id="dashboard" aria-labelledby="hero-title">
+          <div>
+            <span class="eyebrow">Minimal job-search cockpit</span>
+            <h1 id="hero-title">Your job search, organized and tailored.</h1>
+            <p>Analyze roles, focus your story, and track every application from one clean workspace.</p>
+            <div class="hero-actions">
+              <a class="button primary" href="#analyze">Analyze a job</a>
+              <a class="button ghost" href="#profile">Update profile</a>
+            </div>
+          </div>
+          <div class="score-card" aria-label="Profile readiness">
+            <span class="eyebrow">Profile readiness</span>
+            <strong id="readiness-score">72%</strong>
+            <p id="readiness-copy">Add quantified achievements and target roles to improve matching.</p>
+          </div>
+        </section>
+
+        <section class="metrics-grid" aria-label="Application summary">
+          <article class="metric-card"><span>Your saved</span><strong id="metric-saved">0</strong></article>
+          <article class="metric-card"><span>Your analyzed</span><strong id="metric-analyzed">0</strong></article>
+          <article class="metric-card"><span>Your applied</span><strong id="metric-applied">0</strong></article>
+          <article class="metric-card"><span>Your average fit</span><strong id="metric-fit">—</strong></article>
+        </section>
+
+        <section class="panel" id="analyze" aria-labelledby="analyze-title">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Job analysis</span>
+              <h2 id="analyze-title">Paste a role. Get a clear verdict.</h2>
+            </div>
+            <span class="pill">Deterministic demo scoring</span>
+          </div>
+          <form id="job-form" class="job-form">
+            <label for="job-title">Role title</label>
+            <input id="job-title" name="title" autocomplete="off" placeholder="Senior Product Analyst" required />
+
+            <label for="job-company">Company</label>
+            <input id="job-company" name="company" autocomplete="off" placeholder="Acme Health" required />
+
+            <label for="job-url">Job URL <span class="muted-label">optional, saved for reference</span></label>
+            <input id="job-url" name="url" type="url" autocomplete="url" placeholder="https://company.com/careers/role" />
+
+            <label for="job-description">Job description</label>
+            <textarea id="job-description" name="description" rows="7" placeholder="Paste requirements, responsibilities, location, and salary details..." required></textarea>
+
+            <div class="form-actions">
+              <button class="button primary" type="submit">Analyze job</button>
+              <button class="button ghost" type="button" id="clear-form">Clear</button>
+            </div>
+          </form>
+          <div id="analysis-result" class="analysis-result empty" aria-live="polite">
+            Add a job to see fit score, gaps, and recommended next action.
+          </div>
+        </section>
+
+        <section class="split-grid">
+          <article class="panel" id="profile" aria-labelledby="profile-title">
+            <div class="section-head compact">
+              <div>
+                <span class="eyebrow">Profile</span>
+                <h2 id="profile-title">Matching inputs</h2>
+              </div>
+            </div>
+            <form id="profile-form" class="stacked-form">
+              <label for="target-roles">Target roles</label>
+              <input id="target-roles" placeholder="Product analyst, operations lead, data scientist" />
+              <label for="core-skills">Core skills</label>
+              <textarea id="core-skills" rows="4" placeholder="analytics, automation, stakeholder management, Python"></textarea>
+              <label for="dealbreakers">Deal-breakers</label>
+              <input id="dealbreakers" placeholder="No relocation, low salary, heavy travel" />
+              <button class="button primary full" type="submit">Save profile</button>
+            </form>
+          </article>
+
+          <article class="panel" aria-labelledby="actions-title">
+            <div class="section-head compact">
+              <div>
+                <span class="eyebrow">Next actions</span>
+                <h2 id="actions-title">Recommended focus</h2>
+              </div>
+            </div>
+            <ul class="action-list" id="action-list">
+              <li>Paste one target job and generate a fit breakdown.</li>
+              <li>Add 3 quantified achievements to raise profile quality.</li>
+              <li>Export tracker weekly to keep a backup.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="panel" id="tracker" aria-labelledby="tracker-title">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Application tracker</span>
+              <h2 id="tracker-title">Pipeline</h2>
+            </div>
+            <div class="toolbar">
+              <label class="sr-only" for="status-filter">Filter by status</label>
+              <select id="status-filter"><option value="all">All statuses</option></select>
+              <label class="sr-only" for="search-input">Search applications</label>
+              <input id="search-input" type="search" placeholder="Search company or role" />
+            </div>
+          </div>
+          <div id="tracker-list" class="tracker-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel" id="exports" aria-labelledby="exports-title">
+          <div class="section-head compact">
+            <div>
+              <span class="eyebrow">Exports</span>
+              <h2 id="exports-title">Keep your data portable</h2>
+            </div>
+          </div>
+          <div class="export-actions">
+            <button class="button ghost" id="export-json" type="button">Export JSON</button>
+            <button class="button ghost" id="export-csv" type="button">Export CSV</button>
+            <button class="button danger" id="reset-data" type="button">Reset local data</button>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
