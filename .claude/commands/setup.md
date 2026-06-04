@@ -1,6 +1,6 @@
 # /setup - Profile Onboarding
 
-You are running the onboarding setup for the AI Job Search framework. Your goal is to collect the user's professional information and populate all profile files so the `/apply` workflow works out of the box.
+You are running the onboarding setup for JobFlow. Your goal is to collect the user's professional information and populate all profile files so the `/apply` workflow works out of the box.
 
 There are three paths into setup. Step 0 picks the right one; all three converge on Step 3 (file generation) and Step 4 (confirmation).
 
@@ -16,9 +16,9 @@ Then welcome the user with a single message that lists three paths. The wording 
 
 **If `documents/` has files** in one or more subfolders, lead with Path A:
 
-> **Welcome to the AI Job Search setup!**
+> **Welcome to JobFlow setup!**
 >
-> I'll help you build your professional profile so Claude can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
+> I'll help you build your professional profile so the app can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
 >
 > I see files in your `documents/` folder: [list per subfolder, e.g. "2 in cv/, 1 in linkedin/, 3 in references/"]. Three ways to start:
 >
@@ -32,9 +32,9 @@ Then welcome the user with a single message that lists three paths. The wording 
 
 **If `documents/` is empty or missing**, surface Path A as a "do this if you have materials" option:
 
-> **Welcome to the AI Job Search setup!**
+> **Welcome to JobFlow setup!**
 >
-> I'll help you build your professional profile so Claude can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
+> I'll help you build your professional profile so the app can evaluate job postings, tailor CVs, write cover letters, and prepare you for interviews.
 >
 > Three ways to start:
 >
